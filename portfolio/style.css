@@ -1,116 +1,284 @@
+/* =========================================================
+0) BASE
+========================================================= */
+* { box-sizing: border-box; }
 
 body{
-margin: 0;
-background-color: white;  
-color: black;             
-font-family: Arial, sans-serif; 
+margin:0;
+background:#fff;
+color:#000;
+font-family: Arial, sans-serif; /* mantém legível em todo SO */
 }
 
+/* herda a cor do texto pros links p/ não “gritar” no layout */
+a{ color:inherit; text-decoration:none; }
+
+
+/* =========================================================
+1) HEADER
+========================================================= */
 .top-bar{
-color: black;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 10px 16px;
-border-bottom: 1px solid #eee;
+background:#fff;
+border-bottom:1px solid #eee; /* linha fininha pra separar do conteúdo */
 }
 
-nav ul{
-display: flex;
-gap: 8px;
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
-nav a{
-display: inline-block;
-padding: 8px 10px;
-border-radius: 999px;
-text-decoration: none;
-color: #000;
-font-weight: 600;
-position: relative;
-font-size: 15px;
-}
-
-nav a::before{
-content:"";
-position:absolute;
-inset:0;
-border-radius:999px;
-background: rgb(226, 226, 226); /*mexe na cor de fundo na bolha*/
-opacity:0;              /* começa invisível */
-z-index:-1;             /* fica atrás do texto */
-transform: scale(.3); transition: transform .18s ease, opacity .18s ease; /*suaviza a mudanca da bolha pro normal*/
-}
-nav a:hover::before,
-nav a:focus-visible::before{
-opacity:1;              /* aparece a bolha */
-transform: scale(1); /*suaviza a mudanca da bolha pro normal*/
-}
-nav a:hover,
-nav a:focus-visible{
-color:#000000;             /* texto branco em cima da bolha */
+.top-bar .container{
+max-width:1100px;
+margin:0 auto;
+padding:12px 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .logo{
-font-weight: 700;
-text-decoration: none;
-color: #000;
-font-size: 40px;
+font-size:40px;
+font-weight:700;
+color:#000;
 }
 
-.section{ max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
-h1 { line-height: 1.08; letter-spacing: -0.02em; }
-h2 { line-height: 1.12; letter-spacing: -0.01em; }
+nav ul{
+display:flex;
+gap:8px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+nav a{
+display:inline-block;
+padding:8px 10px;
+border-radius:999px;          /* deixa carinha de “pílula” */
+color:#000;
+font-weight:600;
+font-size:15px;
+position:relative;
+isolation:isolate;            /* truque: garante que o ::before fique “atrás” do texto */
+}
+
+/* efeito hover suave criando um “chip” por trás do link */
+nav a::before{
+content:"";
+position:absolute;
+inset:0;                      /* ocupa 100% do link */
+border-radius:999px;
+background:rgb(224,224,224);
+opacity:0;
+transform:scale(.3);
+z-index:-1;                   /* fica atrás do texto */
+transition:transform .18s ease, opacity .18s ease; /* micro-interação rápida */
+}
+
+nav a:hover::before,
+nav a:focus-visible::before{
+opacity:1;
+transform:scale(1);
+}
+
+
+
+/* =========================================================
+2) SOBRE MIM
+========================================================= */
 
 .sobre-mim{
-max-width: 1100px;
-padding: 40px 16px;  
-margin: 0 auto;
-font-size: 30px;
-line-height: 1.6; 
-max-width: 56ch;
-margin-top: 8px; 
+max-width:1100px;
+margin:0 auto;
+padding:56px 16px 80px;       /* respiro extra no fim p/ fechar a seção */
+display:grid;
+grid-template-columns:1fr 300px; /* 300px fixa p/ a foto ficar redondinha */
+gap:32px;
+align-items:center;
+border-bottom:1px solid #E5E7EB; /* separador sutil com a próxima seção */
 }
 
-.sobre-mim{
-display: grid;                 /* ativa grid layout */
-grid-template-columns: 1fr 300px;  /* texto ocupa mais espaço, foto ~300px */
-gap: 32px;                     /* espaço entre texto e foto */
-align-items: center;           /* alinha verticalmente no centro */
+.sobre-texto{ max-width:640px; }
+
+.sobre-texto h1{
+/* clamp evita media query só pra título (min, ideal, máx) */
+font-size:clamp(36px,5vw,56px);
+line-height:1.08;
+letter-spacing:-0.02em;       /* dá um “peso” de título moderno */
+margin:0 0 12px;
 }
 
-.foto{
-display: flex;              /* ativa flex container */
-justify-content: center;    /* centraliza horizontal */
+.sobre-texto p{
+font-size:16px;
+line-height:1.6;
+color:#6B7280;                /* cinza confortável pra leitura */
+max-width:56ch;               /* limita largura do parágrafo (melhora leitura) */
+margin-top:8px;
 }
 
-.foto img{
-width: 260px;
-height: 260px;              /* quadrado fixo */
-object-fit: cover;          /* corta sem distorcer */
-border-radius: 50%;         /* transforma em círculo */
-border: 4px solid #fff;      /* aro branco */
-box-shadow: 0 6px 18px rgba(0,0,0,.08); /* sombra suave */
-}
-
+/* chips de tags */
 .chips{
-display: flex;          /* coloca lado a lado */
-flex-wrap: wrap;        /* quebra linha se não couber */
-gap: 8px;               /* espaçamento entre eles */
-padding: 0;
-margin: 0 0 12px;
-list-style: none;       /* tira bolinhas padrão */
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:0 0 12px;
+padding:0;
+list-style:none;
 }
 
 .chip{
-padding: 6px 12px;
-border-radius: 999px;   /* formato pílula */
-font-size: 14px;
-font-weight: 600;
-background: #f3f4f6;    /* cinza claro */
-border: 1px solid #e5e7eb;
-color: #111827;         /* texto escuro */
+padding:6px 12px;
+border-radius:999px;
+font-size:14px;
+font-weight:600;
+background:#f3f4f6;
+border:1px solid #e5e7eb;
+color:#111827;
+}
+
+
+/* foto circular com “halo” atrás (aparência de destaque) */
+
+.foto{
+display:flex;
+justify-content:center;
+position:relative;            /* necessário pro ::before posicionar certo */
+}
+
+.foto img{
+width:260px; height:260px;    /* tamanho fixo p/ manter círculo perfeito */
+object-fit:cover;             /* corta a foto sem distorcer */
+border-radius:50%;
+border:4px solid #fff;        /* aro branquinho */
+box-shadow:0 6px 18px rgba(0,0,0,.08); /* sombra suave */
+position:relative; z-index:1; /* fica acima do “halo” */
+}
+
+.foto::before{
+content:"";
+position:absolute;
+width:320px; height:320px;    /* “halo” maior que a foto */
+background:#fff;
+border-radius:50%;
+left:50%; top:50%;
+transform:translate(-50%, calc(-50% - 8px)); /* leve deslocamento pra dar profundidade */
+z-index:0;
+}
+
+
+/* =========================================================
+3) PROJETOS
+========================================================= */
+.projetos{
+max-width:1100px;
+margin:96px auto 0;
+padding:0 16px;
+}
+
+.projetos h2{
+font-size:clamp(28px,3vw,40px);
+margin:0 0 24px;
+}
+
+/* grid dos cards */
+.projetos-grid{
+display:flex;
+justify-content:center;   /* se preferir alinhado à esquerda, troque por flex-start */
+flex-wrap:wrap;
+gap:24px;
+}
+
+/* CARD – fora (borda, raio e hover) */
+.card-projetos{
+width:280px;               /* <- mantemos só ESTE width (removi o de 260px) */
+border:1px solid #E8EAED;
+border-radius:18px;
+background:#fff;
+overflow:hidden;           /* garante que a imagem respeite o raio */
+display:flex;
+flex-direction:column;
+transition:transform .12s ease, box-shadow .12s ease;
+}
+.card-projetos:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.card-link{ display:block; color:inherit; }
+
+/* “vitrine” da imagem – igual pra todos os cards */
+.card-midia{
+position:relative;
+aspect-ratio:4 / 3;        /* 1/1 = quadrado; 5/4 = um pouco mais alto */
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff;           /* sem bloco cinza */
+border-bottom:1px solid #E5E7EB;
+overflow:hidden;
+}
+/* padrão: preencher (pode cortar) */
+.card-midia img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+/* SOMENTE no card que tem class="card-midia img-contain" (1º card) */
+.img-contain img{
+object-fit:contain;        /* mostra a imagem inteira */
+width:auto;
+height: 92%;                /* “respiro” dentro da vitrine (90–96% fica bom) */
+max-width:92%;
+border-radius:12px;        /* cantinho arredondado na própria imagem */
+box-shadow:none;
+background:transparent;
+}
+
+/* texto do card */
+.card-body{
+flex:1;
+padding:14px 16px 16px;
+background:#fff;
+}
+.card-title{
+margin:0 0 4px;
+font-size:16px;
+font-weight:700;
+color:#111;
+}
+.card-meta{
+margin:0;
+font-size:13px;
+color:#6B7280;
+}
+
+/* =========================================================
+4) HABILIDADES / CONTATO (placeholders)
+========================================================= */
+.habilidades, .contato{
+max-width:1100px;
+margin:56px auto 0;
+padding:0 16px;
+}
+
+.habilidades h2, .contato h2{
+font-size:clamp(24px,2.5vw,32px);
+margin:0 0 16px;
+}
+
+
+/* =========================================================
+5) RESPONSIVO
+========================================================= */
+@media (max-width: 768px){
+.sobre-mim{
+grid-template-columns:1fr;  /* texto + foto em coluna única */
+gap:24px;
+text-align:left;            /* mantém alinhamento natural */
+}
+
+.foto img{ width:200px; height:200px; }      /* reduz a foto */
+.foto::before{ width:250px; height:250px; }  /* acompanha o “halo” */
+
+.projetos-grid{ gap:16px; }
+.card-projetos{
+width:100%;
+max-width:360px;            /* não estica demais em telas pequenas */
+}
 }
