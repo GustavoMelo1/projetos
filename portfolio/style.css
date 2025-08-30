@@ -1,26 +1,26 @@
 
-body {
-    margin: 0;
-    background-color: white;  
-    color: black;             
-    font-family: Arial, sans-serif; 
+body{
+margin: 0;
+background-color: white;  
+color: black;             
+font-family: Arial, sans-serif; 
 }
 
 .top-bar{
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    border-bottom: 1px solid #eee;
+color: black;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 16px;
+border-bottom: 1px solid #eee;
 }
 
 nav ul{
-    display: flex;
-    gap: 8px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+display: flex;
+gap: 8px;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 
 nav a{
@@ -55,12 +55,62 @@ color:#000000;             /* texto branco em cima da bolha */
 }
 
 .logo{
-    font-weight: 700;
-    text-decoration: none;
-    color: #000;
-    font-size: 20px;
+font-weight: 700;
+text-decoration: none;
+color: #000;
+font-size: 40px;
 }
 
-.section { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+.section{ max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
 h1 { line-height: 1.08; letter-spacing: -0.02em; }
 h2 { line-height: 1.12; letter-spacing: -0.01em; }
+
+.sobre-mim{
+max-width: 1100px;
+padding: 40px 16px;  
+margin: 0 auto;
+font-size: 30px;
+line-height: 1.6; 
+max-width: 56ch;
+margin-top: 8px; 
+}
+
+.sobre-mim{
+display: grid;                 /* ativa grid layout */
+grid-template-columns: 1fr 300px;  /* texto ocupa mais espaço, foto ~300px */
+gap: 32px;                     /* espaço entre texto e foto */
+align-items: center;           /* alinha verticalmente no centro */
+}
+
+.foto{
+display: flex;              /* ativa flex container */
+justify-content: center;    /* centraliza horizontal */
+}
+
+.foto img{
+width: 260px;
+height: 260px;              /* quadrado fixo */
+object-fit: cover;          /* corta sem distorcer */
+border-radius: 50%;         /* transforma em círculo */
+border: 4px solid #fff;      /* aro branco */
+box-shadow: 0 6px 18px rgba(0,0,0,.08); /* sombra suave */
+}
+
+.chips{
+display: flex;          /* coloca lado a lado */
+flex-wrap: wrap;        /* quebra linha se não couber */
+gap: 8px;               /* espaçamento entre eles */
+padding: 0;
+margin: 0 0 12px;
+list-style: none;       /* tira bolinhas padrão */
+}
+
+.chip{
+padding: 6px 12px;
+border-radius: 999px;   /* formato pílula */
+font-size: 14px;
+font-weight: 600;
+background: #f3f4f6;    /* cinza claro */
+border: 1px solid #e5e7eb;
+color: #111827;         /* texto escuro */
+}
