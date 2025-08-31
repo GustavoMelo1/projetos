@@ -282,3 +282,72 @@ width:100%;
 max-width:360px;            /* não estica demais em telas pequenas */
 }
 }
+
+
+/* =========================================================
+6) CONTATOS
+========================================================= */
+
+/* ===== Contato: layout fix com grid areas ===== */
+.contato{
+max-width:1100px;         /* garante que o grid fique dentro do container */
+margin:56px auto 0;
+padding:0 16px;
+}
+
+.contato-grid{
+display:grid !important;
+grid-template-columns: minmax(0,1fr) minmax(0,360px);
+grid-template-areas: "meios extra";   /* esquerda = meios, direita = extra */
+gap:24px;
+align-items:start;
+}
+
+.contato-meios{ 
+grid-area: meios; 
+min-width:0;
+}
+
+.contato-extra{ 
+grid-area: extra; 
+min-width:0;
+background:#fafafa;
+border:1px solid #eee;
+border-radius:16px;
+padding:16px;
+/* opcional: limita muito largo */
+max-width: 420px;
+}
+
+.info-lista{
+list-style:none;
+margin:0;
+padding:0;
+display:grid;
+gap:8px;
+}
+
+/* Botões (mantém os teus) */
+.contato-botoes{ display:flex; flex-wrap:wrap; gap:8px; }
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid #e5e7eb; border-radius:12px; background:#f8fafc; font-weight:600; }
+.btn:hover,.btn:focus-visible{ background:#eef2f7; transform:translateY(-1px); }
+.icon{ width:18px; height:18px; display:block; }
+
+.contato-status{ display:block; margin-top:6px; color:#6B7280; font-size:12px; }
+
+/* Mobile: empilha um embaixo do outro */
+@media (max-width:768px){
+.contato-grid{
+grid-template-columns: 1fr;
+grid-template-areas:
+"meios"
+"extra";
+}
+}
+
+.link-cv{
+    text-decoration: underline;
+}
+
+
+
