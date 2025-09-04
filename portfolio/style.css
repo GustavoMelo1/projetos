@@ -46,6 +46,13 @@ font-size: 40px;
 font-weight: 700;
 }
 
+.top-bar .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
 .top-bar nav ul{
 display: flex;
 gap: 8px;
@@ -170,7 +177,7 @@ margin: 0 0 24px;
 display: flex;
 flex-wrap: wrap;   /* permite várias linhas de cards */
 gap: 24px;
-justify-content: flex-start;
+justify-content: center;
 }
 
 .card-projetos{
@@ -251,14 +258,21 @@ min-width: 0;
 background: #FAFAFA;
 border: 1px solid #EEE;
 border-radius: 16px;
-padding: 16px;
-max-width: 420px; /* evita ficar largo demais em telas grandes */
+padding: 14px;
+align-self:start;
+max-width: 340px; /* evita ficar largo demais em telas grandes */
+margin-bottom: 30px;
 }
+
 
 .info-lista{
 list-style: none;
 margin: 0; padding: 0;
 display: grid; gap: 8px;
+}
+
+.link-cv{
+    text-decoration: underline;
 }
 
 .contato-botoes{ display: flex; flex-wrap: wrap; gap: 8px; }
