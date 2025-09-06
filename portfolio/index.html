@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<!-- viewport: layout responsivo em mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- SEO básico da home -->
+<meta name="description" content="Gustavo — Eng. de Software focado em Back-end / Full-stack. Automação, soluções web e integrações.">
+<!-- dica: adiciona depois <link rel="icon" href="./imagens/favicon.png" type="image/png"> -->
+<link rel="stylesheet" href="./style.css" />
+<title>Portfólio - Gustavo</title>
+</head>
+<body>
+<!-- HEADER fixo do site: navegação principal -->
+<header class="top-bar">
+    <div class="container">
+    <!-- marca/atalho para o topo -->
+    <a class="logo" href="#">Gustavo</a>
+
+    <!-- aria-label ajuda leitores de tela a identificar a barra de navegação -->
+    <nav aria-label="Navegação principal">
+        <!-- usar <ul> dá semântica de lista de links -->
+        <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    </div>
+</header>
+
+<!-- MAIN: conteúdo principal da página -->
+<main>
+    <!-- ====== SEÇÃO: SOBRE ======
+        Regra: 1 <h1> por página; subtítulos internos são <h2> -->
+    <section id="sobre" class="sobre-mim">
+    <div class="sobre-texto">
+        <h1>Sobre Mim</h1>
+
+        <!-- “chips” como lista: acessível e fácil de manter -->
+        <ul class="chips">
+        <li class="chip">Estudante</li>
+        <li class="chip">Automatização</li>
+        <li class="chip">Desenvolvimento</li>
+        <li class="chip">Integrações</li>
+        </ul>
+
+        <!-- parágrafo curto com foco em impacto -->
+        <p>Estudante de Eng. de Software focado em Back-end / Full-stack. Experiência com automação, soluções web e integrações.</p>
+    </div>
+
+    <!-- figure/figcaption seriam opcionais; aqui só a imagem com alt descritivo -->
+    <div class="foto">
+        <img
+        src="./imagens/WhatsApp Image 2025-07-31 at 21.05.35.jpeg"
+        alt="Foto do Gustavo"
+        />
+    </div>
+    </section>
+
+    <!-- ====== SEÇÃO: PROJETOS ====== -->
+    <section id="projetos" class="projetos">
+    <!-- <h2>: próximo nível hierárquico após o <h1> -->
+    <h2>Projetos</h2>
+
+    <!-- grid flexível de cards -->
+    <div class="projetos-grid">
+
+        <!-- CARD 1 -->
+        <article class="card-projetos">
+        <!-- link envolve todo o card; aria-label dá contexto do clique -->
+        <a class="card-link" href="#" aria-label="Abrir projeto FinanFlow">
+            <!-- variação --contain evita cortar prints (ver CSS .card-midia--contain) -->
+            <figure class="card-midia card-midia--contain">
+            <img
+                src="./imagens/Captura de tela_30-8-2025_123913_make.powerautomate.com.jpeg"
+                alt="Workflow FinanFlow no Power Automate"
+            />
+            </figure>
+
+            <div class="card-body">
+            <!-- h3: título local do card -->
+            <h3 class="card-title">FinanFlow</h3>
+            <p class="card-meta">Power Automate · Excel Online · SharePoint · Outlook</p>
+            </div>
+        </a>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="card-projetos">
+        <a class="card-link" href="#" aria-label="Abrir projeto Automação de Fluxos">
+            <figure class="card-midia">
+            <img src="./imagens/projeto-2.jpg" alt="Projeto 2 — Automação de Fluxos" />
+            </figure>
+            <div class="card-body">
+            <h3 class="card-title">Automação de Fluxos</h3>
+            <p class="card-meta">Power Automate · APIs · Webhooks</p>
+            </div>
+        </a>
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="card-projetos">
+        <a class="card-link" href="#" aria-label="Abrir projeto Lista de Tarefas">
+            <figure class="card-midia">
+            <img src="./imagens/projeto-3.jpg" alt="Projeto 3 — Lista de Tarefas" />
+            </figure>
+            <div class="card-body">
+            <h3 class="card-title">Lista de Tarefas</h3>
+            <p class="card-meta">HTML · CSS · JS</p>
+            </div>
+        </a>
+        </article>
+
+    </div>
+    </section>
+
+    <!-- ====== SEÇÃO: HABILIDADES ====== -->
+    <section id="habilidades" class="habilidades">
+    <h2>Habilidades</h2>
+    <!-- chips novamente como lista; fácil de ler e de manter -->
+    <ul class="chips">
+        <li class="chip">HTML</li>
+        <li class="chip">CSS</li>
+        <li class="chip">JavaScript</li>
+        <li class="chip">Java</li>
+        <li class="chip">Power Automate</li>
+        <li class="chip">Power BI</li>
+        <li class="chip">Git/GitHub</li>
+        <li class="chip">Inglês B2</li>
+    </ul>
+    </section>
+
+    <!-- ====== SEÇÃO: CONTATO ====== -->
+    <section id="contato" class="contato">
+    <h2>Contato</h2>
+
+    <!-- Grid com áreas nomeadas (ver CSS .contato-grid) -->
+    <div class="contato-grid">
+        <div class="contato-meios">
+        <p>Escolha o canal que preferir:</p>
+
+        <!-- grupo de CTAs; ícones com aria-hidden para não poluir leitores de tela -->
+        <div class="contato-botoes">
+            <a class="btn btn-icon"
+            href="mailto:gustavomelo.oliveira@hotmail.com?subject=Contato%20pelo%20portf%C3%B3lio">
+            <img class="icon" src="./imagens/o-email.png" alt="" aria-hidden="true">
+            <span>Email</span>
+            </a>
+
+            <!-- rel="noopener noreferrer": segurança ao abrir nova aba -->
+            <a class="btn btn-icon"
+            href="https://wa.me/5551993679050?text=Oi%20Gustavo%2C%20vim%20pelo%20portf%C3%B3lio!"
+            target="_blank" rel="noopener noreferrer">
+            <img class="icon" src="./imagens/whatsapp.png" alt="" aria-hidden="true">
+            <span>WhatsApp</span>
+            </a>
+
+            <a class="btn btn-icon"
+            href="https://github.com/GustavoMelo1"
+            target="_blank" rel="noopener noreferrer">
+            <img class="icon" src="./imagens/github.png" alt="" aria-hidden="true">
+            <span>GitHub</span>
+            </a>
+
+            <a class="btn btn-icon"
+            href="https://www.instagram.com/gustaaavomelo/"
+            target="_blank" rel="noopener noreferrer">
+            <img class="icon" src="./imagens/instagram.png" alt="" aria-hidden="true">
+            <span>Instagram</span>
+            </a>
+
+            <a class="btn btn-icon"
+            href="https://www.linkedin.com/in/gustavo-melo-oliveira/"
+            target="_blank" rel="noopener noreferrer">
+            <img class="icon" src="./imagens/linkedin.png" alt="" aria-hidden="true">
+            <span>LinkedIn</span>
+            </a>
+        </div>
+
+        <!-- aria-live: mensagens dinâmicas de status (ex.: “copiado”) são narradas -->
+        <small id="status-copia" class="contato-status" aria-live="polite"></small>
+        </div>
+
+        <!-- aside: informações complementares da seção -->
+        <aside class="contato-extra">
+        <ul class="info-lista">
+            <li><strong>Disponibilidade:</strong> Estágio / Freela / Jovem Aprendiz</li>
+            <li><strong>Foco:</strong> Back-end, automações, integrações, Full-stack</li>
+            <li><strong>Resposta:</strong> até 24h</li>
+            <!-- download sugere ao navegador salvar o arquivo -->
+            <li><a class="link-cv" href="./documentos/curriculo-gustavo.pdf" download>Baixar CV</a></li>
+        </ul>
+        </aside>
+    </div>
+    </section>
+</main>
+
+<!-- Botão utilitário; o atributo “hidden” deixa fora da navegação até o JS mostrar -->
+<button id="toTop" class="to-top" type="button" aria-label="Voltar ao topo" hidden>↑</button>
+
+<!-- Scripts no final do body: carregam depois do HTML (melhor performance) -->
+<script src="./style.js"></script>
+</body>
+</html>

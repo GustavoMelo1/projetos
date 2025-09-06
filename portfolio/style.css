@@ -1,0 +1,322 @@
+/* =========================================================
+0) BASE & TOKENS
+- Tokens centralizam cores/valores: troca aqui e o site todo segue.
+========================================================= */
+* { box-sizing: border-box; } /* inclui padding/border no cálculo de width/height -> layout previsível */
+
+:root{
+--bg: #fff;
+--text: #000;
+--muted: #6B7280;    /* cinza de texto secundário */
+--line: #E5E7EB;     /* linhas divisórias suaves */
+--chip-bg: #F3F4F6;  /* fundo dos chips/badges */
+--chip-border: #E5E7EB;
+--card-border: #E8EAED;
+}
+
+html, body { height: 100%; }
+body{
+margin: 0;
+background: var(--bg);
+color: var(--text);
+font-family: Arial, Helvetica, sans-serif;
+line-height: 1.5; /* melhora legibilidade em parágrafos */
+}
+
+a{ color: inherit; text-decoration: none; }
+img{ max-width: 100%; display: block; } /* impede img estourar o container */
+
+/* Utilitário de largura (container central) */
+.container{
+max-width: 1100px;    /* largura máxima do conteúdo */
+margin: 0 auto;       /* centraliza horizontalmente */
+padding: 12px 16px;
+}
+
+/* =========================================================
+1) HEADER
+========================================================= */
+.top-bar{
+background: #fff;
+border-bottom: 1px solid #eee; /* separador sutil do conteúdo */
+}
+
+.logo{
+font-size: 40px;
+font-weight: 700;
+}
+
+.top-bar .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.top-bar nav ul{
+display: flex;
+gap: 8px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.top-bar nav a{
+display: inline-block;
+padding: 8px 10px;
+border-radius: 999px;   /* deixa “pílula” */
+font-weight: 600;
+font-size: 15px;
+position: relative;     /* vira referência pro ::before posicionar */
+isolation: isolate;     /* cria um novo contexto de empilhamento -> garante ::before atrás do texto mesmo com z-index */
+}
+
+/* Hover “chip” atrás do link usando um pseudo-elemento */
+.top-bar nav a::before{
+content: "";
+position: absolute;
+inset: 0;               /* shorthand = top/right/bottom/left: 0; ocupa o link todo */
+border-radius: 999px;
+background: rgb(224,224,224);
+opacity: 0;
+transform: scale(.3);   /* começa pequeno pra dar sensação de “surgir” */
+z-index: -1;            /* fica atrás do conteúdo do link */
+transition: transform .18s ease, opacity .18s ease; /* micro interação rápida e suave */
+}
+.top-bar nav a:hover::before,
+.top-bar nav a:focus-visible::before{
+opacity: 1;
+transform: scale(1);
+}
+
+/* =========================================================
+2) SOBRE MIM
+========================================================= */
+.sobre-mim{
+max-width: 1100px;
+margin: 0 auto;
+padding: 56px 16px 80px;
+display: grid;                           /* grid = alinhamento simples de 2 colunas */
+grid-template-columns: 1fr 300px;        /* texto flexível + coluna fixa pra foto */
+gap: 32px;
+align-items: center;                     /* alinha verticalmente centro a centro */
+border-bottom: 1px solid var(--line);
+}
+
+.sobre-texto{ max-width: 640px; }
+
+.sobre-texto h1{
+/* clamp(min, ideal, max) -> responsivo sem media query */
+font-size: clamp(36px, 5vw, 56px);
+line-height: 1.08;
+letter-spacing: -0.02em; /* leve “aperto” típico de título moderno */
+margin: 0 0 12px;
+}
+.sobre-texto p{
+font-size: 16px;
+line-height: 1.6;
+color: var(--muted);
+max-width: 56ch;        /* limita a ~56 caracteres por linha -> leitura confortável */
+margin-top: 8px;
+}
+
+/* chips/badges de tags */
+.chips{
+display: flex;
+flex-wrap: wrap;        /* quebra pro lado quando faltar espaço */
+gap: 8px;
+margin: 0 0 12px;
+padding: 0;
+list-style: none;
+}
+.chip{
+padding: 6px 12px;
+border-radius: 999px;
+font-size: 14px;
+font-weight: 600;
+background: var(--chip-bg);
+border: 1px solid var(--chip-border);
+color: #111827;
+}
+
+/* Foto com “halo” (círculo maior ao fundo) */
+.foto{ display: flex; justify-content: center; position: relative; }
+.foto img{
+width: 260px; height: 260px;
+object-fit: cover;      /* corta a foto sem distorcer */
+border-radius: 50%;
+border: 4px solid #fff;
+box-shadow: 0 6px 18px rgba(0,0,0,.08);
+position: relative; z-index: 1; /* fica acima do halo */
+}
+.foto::before{
+content: "";
+position: absolute;
+width: 320px; height: 320px; /* maior pra formar o “halo” */
+background: #fff;
+border-radius: 50%;
+left: 50%; top: 50%;
+transform: translate(-50%, calc(-50% - 8px)); /* centra e dá leve deslocamento vertical pra profundidade */
+z-index: 0;
+}
+
+/* =========================================================
+3) PROJETOS
+========================================================= */
+.projetos{
+max-width: 1100px;
+margin: 96px auto 0;
+padding: 0 16px;
+}
+.projetos h2{
+font-size: clamp(28px, 3vw, 40px);
+margin: 0 0 24px;
+}
+
+.projetos-grid{
+display: flex;
+flex-wrap: wrap;   /* permite várias linhas de cards */
+gap: 24px;
+justify-content: center;
+}
+
+.card-projetos{
+width: 280px;
+border: 1px solid var(--card-border);
+border-radius: 18px;
+background: #fff;
+overflow: hidden;  /* imagem respeita os cantos arredondados */
+display: flex;
+flex-direction: column;
+transition: transform .12s ease, box-shadow .12s ease; /* micro-elevação no hover */
+}
+.card-projetos:hover{
+transform: translateY(-2px);
+box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+.card-link{ display: block; color: inherit; }
+
+/* Vitrine do card */
+.card-midia{
+position: relative;
+aspect-ratio: 4 / 3;  /* mantém proporção da “moldura” independente da imagem */
+display: flex;
+align-items: center;
+justify-content: center;
+background: #fff;
+border-bottom: 1px solid var(--line);
+overflow: hidden;
+}
+.card-midia img{
+width: 100%;
+height: 100%;
+object-fit: cover;  /* preenche a moldura mesmo que corte um pouco */
+}
+
+/* Variação para screenshots com muito espaço (não cortar) */
+.card-midia--contain img{
+object-fit: contain;   /* mostra a imagem inteira dentro da moldura */
+width: auto;
+height: 92%;           /* dá respiro interno */
+max-width: 92%;
+border-radius: 12px;   /* cantos suaves na própria imagem */
+background: transparent;
+}
+
+.card-body{ flex: 1; padding: 14px 16px 16px; background: #fff; }
+.card-title{ margin: 0 0 4px; font-size: 16px; font-weight: 700; color: #111; }
+.card-meta{ margin: 0; font-size: 13px; color: var(--muted); }
+
+/* =========================================================
+4) HABILIDADES & CONTATO
+========================================================= */
+.habilidades, .contato{
+max-width: 1100px;
+margin: 56px auto 0;
+padding: 0 16px;
+}
+.habilidades h2, .contato h2{
+font-size: clamp(24px, 2.5vw, 32px);
+margin: 0 0 16px;
+}
+
+/* ===== Contato: grid com áreas nomeadas =====
+- grid-template-areas deixa explícito que à esquerda ficam os “meios”
+e à direita o “extra”. Facilita reordenar no mobile. */
+.contato-grid{
+display: grid;
+grid-template-columns: minmax(0,1fr) minmax(0,360px); /* previne overflow com minmax(0,…) */
+grid-template-areas: "meios extra";
+gap: 24px;
+align-items: start;
+}
+.contato-meios{ grid-area: meios; min-width: 0; } /* min-width:0 permite flex/shrink de conteúdo longo */
+.contato-extra{
+grid-area: extra;
+min-width: 0;
+background: #FAFAFA;
+border: 1px solid #EEE;
+border-radius: 16px;
+padding: 14px;
+align-self:start;
+max-width: 340px; /* evita ficar largo demais em telas grandes */
+margin-bottom: 30px;
+}
+
+
+.info-lista{
+list-style: none;
+margin: 0; padding: 0;
+display: grid; gap: 8px;
+}
+
+.link-cv{
+    text-decoration: underline;
+}
+
+.contato-botoes{ display: flex; flex-wrap: wrap; gap: 8px; }
+.btn{
+display: inline-flex; align-items: center; gap: 8px;
+padding: 10px 14px; 
+border: 1px solid #e5e7eb;
+border-radius: 12px;
+background: #f8fafc;
+font-weight: 600;
+}
+.btn:hover, .btn:focus-visible{ background: #eef2f7; transform: translateY(-1px); }
+.icon{ width: 18px; height: 18px; display: block; }
+.contato-status{ display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+/* Botão “voltar ao topo” (UI mínima) */
+.to-top{
+position: fixed;
+right: 16px; bottom: 16px;
+border: 1px solid #e5e7eb; background: #fff;
+border-radius: 10px; padding: 8px 10px; font-weight: 700;
+box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+/* =========================================================
+5) RESPONSIVO
+- Regras que mudam o layout em telas menores.
+========================================================= */
+@media (max-width: 768px){
+.sobre-mim{
+grid-template-columns: 1fr; /* empilha texto e foto */
+gap: 24px;
+}
+.foto img{ width: 200px; height: 200px; }
+.foto::before{ width: 250px; height: 250px; }
+
+.projetos-grid{ gap: 16px; }
+.card-projetos{ width: 100%; max-width: 360px; }
+
+/* Reordena áreas com 1 coluna no contato */
+.contato-grid{
+grid-template-columns: 1fr;
+grid-template-areas:
+"meios"
+"extra";
+}
+}
