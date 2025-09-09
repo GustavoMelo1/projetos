@@ -167,7 +167,9 @@ z-index: 0;
 max-width: 1100px;
 margin: 96px auto 0;
 padding: 0 16px;
+position: relative;
 }
+
 .projetos h2{
 font-size: clamp(28px, 3vw, 40px);
 margin: 0 0 24px;
