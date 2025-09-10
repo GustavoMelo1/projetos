@@ -226,9 +226,31 @@ border-radius: 12px;   /* cantos suaves na própria imagem */
 background: transparent;
 }
 
-.card-body{ flex: 1; padding: 14px 16px 16px; background: #fff; }
-.card-title{ margin: 0 0 4px; font-size: 16px; font-weight: 700; color: #111; }
-.card-meta{ margin: 0; font-size: 13px; color: var(--muted); }
+.card-body { 
+flex: 1; 
+padding: 14px 16px 16px; 
+background: #fff; 
+}
+
+.card-title { 
+margin: 0 0 4px; 
+font-size: 16px; 
+font-weight: 700; 
+color: #111; 
+}
+
+.tags {
+display: flex;
+flex-wrap: wrap;  /* quebra linha se faltar espaço */
+gap: 0.5rem;      /* espaço entre os chips */
+}
+
+.tag {
+background: #f0f0f0;
+padding: 0.3rem 0.8rem;
+border-radius: 999px; /* deixa redondo */
+font-size: 0.9rem;
+}
 
 /* =========================================================
 4) HABILIDADES & CONTATO
