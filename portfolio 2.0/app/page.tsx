@@ -36,7 +36,7 @@ export default function HomePage() {
             Regra: 1 <h1> por página; subtítulos internos são <h2> */}
         <section id="sobre" className="sobre-mim">
           <div className="sobre-texto">
-            <h1>Sobre Mim</h1>
+            <h1>Sobre mim</h1>
 
             {/* "chips" como lista: acessível e fácil de manter */}
             <ul className="chips">
@@ -66,7 +66,7 @@ export default function HomePage() {
               Meus <span className="highlight">Projetos</span>
             </h2>
             <p className="section-subtitle">
-              Alguns dos projetos que desenvolvi, focando em automação, integrações e soluções web.
+            Projetos desenvolvidos e em andamento, focando em automação, integrações e soluções web.
             </p>
 
             <div className="projetos-grid">
