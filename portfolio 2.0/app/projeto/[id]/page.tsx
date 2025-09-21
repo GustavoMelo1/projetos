@@ -1,13 +1,31 @@
 import { notFound } from "next/navigation"
-import { Header } from "@/components/header"
-import { ProjectDetail } from "@/components/project-detail"
+import Header from "../../../components/header"
+import { ProjectDetail } from "../../../components/project-detail"
 
-const projects = {
+// 1) Define o tipo exato que o ProjectDetail espera
+interface Project {
+  title: string
+  subtitle: string
+  description: string
+  fullDescription: string
+  technologies: string[]
+  features: string[]
+  nextSteps: string[]
+  architecture: string[]
+  demoUrl: string
+  githubUrl: string
+  images: string[]
+}
+
+// 2) Tipamos o objeto de projetos como Record<string, Project>
+//    (assim o 'project' já sai do tipo certo)
+const projects: Record<string, Project> = {
   "biografia-empilhadeiras": {
     title: "Biografia das Empilhadeiras",
     subtitle: "Sistema de Gestão de Manutenção",
     description: "Cadastro e histórico de manutenção com foco no uso real da oficina.",
-    fullDescription: `O sistema registra dados das empilhadeiras (modelo, ano nº de série) e cria "biografias" com histórico de serviços (troco de roda, torre, etc.). O objetivo é facilitar decisões de manutenção e custos.`,
+    fullDescription:
+      'O sistema registra dados das empilhadeiras (modelo, ano, nº de série) e cria "biografias" com histórico de serviços (troca de roda, torre, etc.). O objetivo é facilitar decisões de manutenção e custos.',
     technologies: ["HTML", "CSS", "JavaScript"],
     features: [
       "Cadastro rápido de empilhadeiras com formulário intuitivo",
@@ -21,19 +39,24 @@ const projects = {
       "Relatórios avançados com gráficos e métricas",
     ],
     architecture: [
-      "UI: componentes do formulário – cards para organização visual",
+      "UI: componentes de formulário – cards para organização visual",
       "Lógica: JavaScript puro para manipulação de dados",
       "Armazenamento: LocalStorage para persistência local",
     ],
-    demoUrl: "#",
-    githubUrl: "#",
-    images: ["/forklift-registration-form.jpg", "/maintenance-history-dashboard.jpg", "/search-and-filter-interface.jpg"],
+    demoUrl: "/projeto/biografia-empilhadeiras",
+    githubUrl: "https://github.com/GustavoMelo1",
+    images: [
+      "/forklift-management-system-interface.jpg",
+      "/forklift-management-system-interface.jpg",
+      "/forklift-management-system-interface.jpg",
+    ],
   },
   finanflow: {
     title: "FinanFlow",
     subtitle: "Automação de Fluxos Financeiros",
     description: "Automação de fluxos financeiros com Power Automate e integração com Excel.",
-    fullDescription: `Sistema de automação que conecta diferentes ferramentas Microsoft para criar fluxos financeiros automatizados, reduzindo trabalho manual e aumentando a precisão dos dados.`,
+    fullDescription:
+      "Sistema de automação que conecta diferentes ferramentas Microsoft para criar fluxos financeiros automatizados, reduzindo trabalho manual e aumentando a precisão dos dados.",
     technologies: ["Power Automate", "Excel Online", "SharePoint", "Outlook"],
     features: [
       "Automação de aprovações financeiras via email",
@@ -51,15 +74,20 @@ const projects = {
       "Processamento: Power Automate workflows",
       "Armazenamento: SharePoint Lists e Excel Online",
     ],
-    demoUrl: "#",
-    githubUrl: "#",
-    images: ["/power-automate-workflow-diagram.jpg", "/excel-financial-dashboard.jpg", "/sharepoint-approval-interface.jpg"],
+    demoUrl: "/projeto/finanflow",
+    githubUrl: "https://github.com/GustavoMelo1",
+    images: [
+      "/financial-automation-dashboard-dark-theme.jpg",
+      "/financial-automation-dashboard-dark-theme.jpg",
+      "/financial-automation-dashboard-dark-theme.jpg",
+    ],
   },
   "automacao-fluxos": {
     title: "Automação de Fluxos",
     subtitle: "Sistema de Automação Empresarial",
     description: "Sistema de automação com APIs e webhooks para otimizar processos.",
-    fullDescription: `Plataforma robusta para automação de processos empresariais, conectando diferentes sistemas através de APIs e webhooks para criar fluxos de trabalho eficientes.`,
+    fullDescription:
+      "Plataforma robusta para automação de processos empresariais, conectando diferentes sistemas através de APIs e webhooks para criar fluxos de trabalho eficientes.",
     technologies: ["Power Automate", "APIs", "Webhooks"],
     features: [
       "Conectores personalizados para APIs externas",
@@ -77,15 +105,20 @@ const projects = {
       "Event Processing: Webhooks e triggers",
       "Workflow Engine: Power Automate como orquestrador",
     ],
-    demoUrl: "#",
-    githubUrl: "#",
-    images: ["/api-integration-dashboard.jpg", "/webhook-configuration-interface.jpg", "/workflow-monitoring-system.jpg"],
+    demoUrl: "/projeto/automacao-fluxos",
+    githubUrl: "https://github.com/GustavoMelo1",
+    images: [
+      "/workflow-automation-interface.png",
+      "/workflow-automation-interface.png",
+      "/workflow-automation-interface.png",
+    ],
   },
   "lista-tarefas": {
     title: "Lista de Tarefas",
     subtitle: "Aplicação de Produtividade",
     description: "Aplicação web para gerenciamento de tarefas com interface moderna.",
-    fullDescription: `Aplicação web moderna para gerenciamento de tarefas pessoais e profissionais, com foco na usabilidade e experiência do usuário.`,
+    fullDescription:
+      "Aplicação web moderna para gerenciamento de tarefas pessoais e profissionais, com foco na usabilidade e experiência do usuário.",
     technologies: ["HTML", "CSS", "JavaScript"],
     features: [
       "Interface limpa e intuitiva",
@@ -99,26 +132,29 @@ const projects = {
       "Interatividade: JavaScript ES6+ com módulos",
       "Persistência: LocalStorage com fallback",
     ],
-    demoUrl: "#",
-    githubUrl: "#",
-    images: ["/modern-todo-list-interface.jpg", "/task-categories-and-priorities.jpg", "/mobile-responsive-design.png"],
+    demoUrl: "/projeto/lista-tarefas",
+    githubUrl: "https://github.com/GustavoMelo1",
+    images: [
+      "/modern-todo-list-app-interface.jpg",
+      "/modern-todo-list-app-interface.jpg",
+      "/modern-todo-list-app-interface.jpg",
+    ],
   },
 }
 
-interface ProjectPageProps {
-  params: {
-    id: string
-  }
-}
-
+// Gera as rotas estáticas
 export function generateStaticParams() {
-  return Object.keys(projects).map((id) => ({
-    id,
-  }))
+  return Object.keys(projects).map((id) => ({ id }))
 }
 
+// Props da página dinâmica
+interface ProjectPageProps {
+  params: { id: string }
+}
+
+// Página de detalhe
 export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects[params.id as keyof typeof projects]
+  const project = projects[params.id]
 
   if (!project) {
     notFound()

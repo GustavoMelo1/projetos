@@ -55,7 +55,7 @@ export default function HomePage() {
 
           {/* figure/figcaption seriam opcionais; aqui só a imagem com alt descritivo */}
           <div className="foto">
-            <img src="/professional-headshot-of-young-software-developer.jpg" alt="Foto do Gustavo" />
+            <img src="/Gustavo.jpeg" alt="Foto do Gustavo" />
           </div>
         </section>
 
@@ -69,18 +69,47 @@ export default function HomePage() {
               Alguns dos projetos que desenvolvi, focando em automação, integrações e soluções web.
             </p>
 
-            {/* grid flexível de cards */}
             <div className="projetos-grid">
-              {/* CARD 1 */}
+              {/* 1) Automação de Fluxos */}
+              <article className="project-card">
+                <div className="project-image">
+                  <img src="/workflow-automation-interface.png" alt="Automação de Fluxos" />
+                </div>
+                <div className="project-content">
+                  <h3 className="project-title">Automação de Fluxos</h3>
+                  <p className="project-description">Em Desenvolvimento.</p>
+                  <div className="project-tags">
+                    <span className="project-tag">Power Automate</span>
+                    <span className="project-tag">SharePoint</span>
+                    <span className="project-tag">Outlook</span>
+                  </div>
+                  <div className="project-actions">
+                    <a href="/projeto/automacao-fluxos" className="btn-demo">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15,3 21,3 21,9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                      Demo
+                    </a>
+                    <a href="https://github.com/GustavoMelo1" target="_blank" rel="noopener noreferrer" className="btn-code">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                      </svg>
+                      Código
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              {/* 2) Biografia das Empilhadeiras */}
               <article className="project-card">
                 <div className="project-image">
                   <img src="/forklift-management-system-interface.jpg" alt="Sistema de Biografia das Empilhadeiras" />
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">Biografia das Empilhadeiras</h3>
-                  <p className="project-description">
-                    Cadastro e histórico de manutenção com foco no uso real da oficina.
-                  </p>
+                  <p className="project-description">Em Desenvolvimento.</p>
                   <div className="project-tags">
                     <span className="project-tag">HTML</span>
                     <span className="project-tag">CSS</span>
@@ -95,12 +124,7 @@ export default function HomePage() {
                       </svg>
                       Demo
                     </a>
-                    <a
-                      href="https://github.com/GustavoMelo1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-code"
-                    >
+                    <a href="https://github.com/GustavoMelo1" target="_blank" rel="noopener noreferrer" className="btn-code">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                       </svg>
@@ -110,21 +134,19 @@ export default function HomePage() {
                 </div>
               </article>
 
-              {/* CARD 2 */}
+              {/* 3) FinanFlow */}
               <article className="project-card">
                 <div className="project-image">
                   <img src="/financial-automation-dashboard-dark-theme.jpg" alt="FinanFlow - Automação Financeira" />
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">FinanFlow</h3>
-                  <p className="project-description">
-                    Automação de fluxos financeiros com Power Automate e integração com Excel.
-                  </p>
+                  <p className="project-description">Em Desenvolvimento.</p>
                   <div className="project-tags">
                     <span className="project-tag">Power Automate</span>
                     <span className="project-tag">Excel Online</span>
                     <span className="project-tag">SharePoint</span>
-                    <span className="project-tag">Outlook</span>
+                    <span className="project-tag">WebHooks</span>
                   </div>
                   <div className="project-actions">
                     <a href="/projeto/finanflow" className="btn-demo">
@@ -135,12 +157,7 @@ export default function HomePage() {
                       </svg>
                       Demo
                     </a>
-                    <a
-                      href="https://github.com/GustavoMelo1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-code"
-                    >
+                    <a href="https://github.com/GustavoMelo1" target="_blank" rel="noopener noreferrer" className="btn-code">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                       </svg>
@@ -150,55 +167,14 @@ export default function HomePage() {
                 </div>
               </article>
 
-              {/* CARD 3 */}
-              <article className="project-card">
-                <div className="project-image">
-                  <img src="/workflow-automation-interface.png" alt="Automação de Fluxos" />
-                </div>
-                <div className="project-content">
-                  <h3 className="project-title">Automação de Fluxos</h3>
-                  <p className="project-description">
-                    Sistema de automação com APIs e webhooks para otimizar processos.
-                  </p>
-                  <div className="project-tags">
-                    <span className="project-tag">Power Automate</span>
-                    <span className="project-tag">APIs</span>
-                    <span className="project-tag">Webhooks</span>
-                  </div>
-                  <div className="project-actions">
-                    <a href="/projeto/automacao-fluxos" className="btn-demo">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15,3 21,3 21,9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                      Demo
-                    </a>
-                    <a
-                      href="https://github.com/GustavoMelo1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-code"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                      </svg>
-                      Código
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              {/* CARD 4 */}
+              {/* 4) Lista de Tarefas */}
               <article className="project-card">
                 <div className="project-image">
                   <img src="/modern-todo-list-app-interface.jpg" alt="Lista de Tarefas" />
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">Lista de Tarefas</h3>
-                  <p className="project-description">
-                    Aplicação web para gerenciamento de tarefas com interface moderna.
-                  </p>
+                  <p className="project-description">Em Desenvolvimento.</p>
                   <div className="project-tags">
                     <span className="project-tag">HTML</span>
                     <span className="project-tag">CSS</span>
@@ -213,12 +189,7 @@ export default function HomePage() {
                       </svg>
                       Demo
                     </a>
-                    <a
-                      href="https://github.com/GustavoMelo1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-code"
-                    >
+                    <a href="https://github.com/GustavoMelo1" target="_blank" rel="noopener noreferrer" className="btn-code">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                       </svg>
@@ -228,6 +199,8 @@ export default function HomePage() {
                 </div>
               </article>
             </div>
+
+
 
             <div className="projects-footer">
               <a
@@ -288,6 +261,7 @@ export default function HomePage() {
                   <span className="skill-tag">Node.js</span>
                   <span className="skill-tag">PostgreSQL</span>
                   <span className="skill-tag">APIs REST</span>
+                  <span className="skill-tag">Python</span>
                 </div>
               </div>
 
@@ -328,7 +302,7 @@ export default function HomePage() {
               <h3>Outras Competências</h3>
               <div className="other-skills-tags">
                 <span className="other-skill-tag">Inglês B2</span>
-                <span className="other-skill-tag">Metodologias Ágeis</span>
+                <span className="other-skill-tag">Facilidade em aprender</span>
                 <span className="other-skill-tag">Resolução de Problemas</span>
               </div>
             </div>
@@ -470,7 +444,7 @@ export default function HomePage() {
                     <p>em até 24h</p>
                   </div>
 
-                  <a href="/cv-document.jpg" download className="download-cv">
+                  <a href="/Curriculo Gustavo.pdf" download className="download-cv">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                       <polyline points="7,10 12,15 17,10" />

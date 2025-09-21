@@ -301,27 +301,19 @@ img {
 
 .projetos-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
   gap: 32px;
-  margin-bottom: 48px;
-  max-width: none; /* allow full width usage */
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .project-card {
-  background: #fff;
-  border-radius: 12px; /* restored to original balanced rounded corners */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; /* distribui bem os elementos */
+  min-height: 420px;  /* altura mínima fixa para todos */
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: scale(0.93);  /* aumenta levemente no hover */
 }
 
 .project-badge-destaque {
@@ -350,7 +342,10 @@ img {
 }
 
 .project-content {
-  padding: 24px;
+  flex: 1;   /* faz o conteúdo ocupar o espaço */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-title {
@@ -425,6 +420,7 @@ img {
 
 .projects-footer {
   text-align: center;
+  margin-top: 40px;   /* separa do grid */
 }
 
 .btn-github {
@@ -563,12 +559,12 @@ img {
   text-align: center;
 }
 
+/* 2 colunas: esquerda (2 partes) | direita (1 parte) */
 .contact-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 48px;
-  align-items: start;
-  max-width: none; /* allow full width usage */
+  align-items: center; 
 }
 
 .contact-channels h3 {
@@ -739,6 +735,7 @@ img {
   .projetos-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+    margin-bottom: 40px;
   }
 
   .skills-grid {
@@ -752,8 +749,8 @@ img {
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
   }
+
 
   .contact-sidebar {
     position: static;
