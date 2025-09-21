@@ -82,29 +82,34 @@ const projects: Record<string, Project> = {
       "/financial-automation-dashboard-dark-theme.jpg",
     ],
   },
-  "automacao-fluxos": {
-    title: "Automação de Fluxos",
-    subtitle: "Sistema de Automação Empresarial",
-    description: "Sistema de automação com APIs e webhooks para otimizar processos.",
-    fullDescription:
-      "Plataforma robusta para automação de processos empresariais, conectando diferentes sistemas através de APIs e webhooks para criar fluxos de trabalho eficientes.",
-    technologies: ["Power Automate", "APIs", "Webhooks"],
-    features: [
-      "Conectores personalizados para APIs externas",
-      "Webhooks para eventos em tempo real",
-      "Monitoramento e logs detalhados",
-      "Interface de configuração intuitiva",
-    ],
-    nextSteps: [
-      "Suporte a mais protocolos de integração",
-      "Dashboard de analytics em tempo real",
-      "Sistema de alertas inteligentes",
-    ],
-    architecture: [
-      "API Gateway: Gerenciamento de conexões externas",
-      "Event Processing: Webhooks e triggers",
-      "Workflow Engine: Power Automate como orquestrador",
-    ],
+"automacao-fluxos": {
+  title: "Automação de Guias & Pagamentos",
+  subtitle: "Power Automate + Excel Online (SharePoint)",
+  description: "Fluxo automatizado para registro e acompanhamento de guias em planilha Excel/SharePoint.",
+  fullDescription:
+    "Projeto de automação criado para simplificar a gestão de guias de pagamento do escritório. O fluxo do Power Automate registra os dados em uma planilha Excel Online (hospedada no SharePoint), atualiza status de pendente/pago, e envia notificações aos responsáveis. Esse processo reduziu tarefas manuais e centralizou o acompanhamento em um único lugar.",
+  technologies: [
+    "Power Automate",
+    "Excel Online",
+    "SharePoint"
+  ],
+  features: [
+    "Registro automático de guias na planilha Excel",
+    "Controle de status (Pendente/Pago)",
+    "Notificação automática por e-mail aos responsáveis",
+    "Histórico centralizado para conciliação"
+  ],
+  nextSteps: [
+    "Criar dashboard no Power BI para análise de pagamentos",
+    "Adicionar alertas de vencimento",
+    "Integrar com o sistema interno do escritório"
+  ],
+  architecture: [
+    "Trigger: Inclusão de nova guia",
+    "Power Automate: fluxo de registro e atualização de status",
+    "Excel Online: armazenamento central",
+    "SharePoint: compartilhamento e versionamento"
+  ],
     demoUrl: "/projeto/automacao-fluxos",
     githubUrl: "https://github.com/GustavoMelo1",
     images: [
@@ -163,9 +168,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="pt-20">
-        <ProjectDetail project={project} />
-      </main>
+          <main className="pt-20 project-detail">
+            <ProjectDetail project={project} />
+          </main>
     </div>
   )
 }

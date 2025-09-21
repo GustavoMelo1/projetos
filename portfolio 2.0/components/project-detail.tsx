@@ -35,32 +35,29 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     <div className="container mx-auto px-4 py-8">
       {/* Header local */}
       <div className="mb-8">
-        <Link
-          href="/#projetos"
-          className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm hover:bg-gray-50 transition"
-        >
+        {/* Passo 2 → botão outline */}
+        <Link href="/#projetos" className="btn-outline">
           <ArrowLeft className="h-4 w-4" />
           Voltar aos Projetos
         </Link>
 
         <div className="space-y-4 mt-4">
           <h1 className="text-4xl md:text-6xl font-bold">{project.title}</h1>
-          <p className="text-xl text-gray-600">{project.subtitle}</p>
+          <p className="text-xl text-[var(--muted)]">{project.subtitle}</p>
 
-          <div className="flex flex-wrap gap-2">
+          {/* Passo 3 → chips de tecnologias */}
+          <ul className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
-              <span key={tech} className="inline-flex items-center rounded-full bg-gray-200 px-3 py-1 text-sm">
-                {tech}
-              </span>
+              <li key={tech} className="badge">{tech}</li>
             ))}
-          </div>
+          </ul>
 
           <div className="flex gap-3">
             <a
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white text-sm hover:bg-blue-700 transition"
+              className="inline-flex items-center gap-2 rounded-md bg-[var(--primary)] px-4 py-2 text-[var(--primary-foreground)] text-sm hover:bg-[#0063AD] transition"
             >
               <ExternalLink className="h-4 w-4" />
               Ver Demo
@@ -69,7 +66,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm hover:bg-gray-50 transition"
+              className="btn-outline px-4 py-2"
             >
               <Github className="h-4 w-4" />
               GitHub
@@ -81,7 +78,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Image Gallery */}
         <div className="space-y-4">
-          <div className="rounded-lg border border-gray-200 overflow-hidden">
+          <div className="card-surface overflow-hidden">
             <div className="relative">
               <img
                 src={project.images[currentImageIndex] || "/placeholder.svg"}
@@ -92,14 +89,14 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
               {project.images.length > 1 && (
                 <>
                   <button
-                    className="absolute left-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white/90 p-2 hover:bg-white transition"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 btn-outline p-2"
                     onClick={prevImage}
                     aria-label="Imagem anterior"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white/90 p-2 hover:bg-white transition"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 btn-outline p-2"
                     onClick={nextImage}
                     aria-label="Próxima imagem"
                   >
@@ -113,7 +110,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   <button
                     key={index}
                     className={`w-2.5 h-2.5 rounded-full transition ${
-                      index === currentImageIndex ? "bg-white" : "bg-white/60"
+                      index === currentImageIndex ? "bg-[var(--primary)]" : "bg-[var(--chip-bg)]"
                     }`}
                     onClick={() => setCurrentImageIndex(index)}
                     aria-label={`Ir para imagem ${index + 1}`}
@@ -124,11 +121,11 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </div>
 
           {/* Vídeo placeholder */}
-          <div className="rounded-lg border border-gray-200 p-6">
-            <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
+          <div className="card-surface p-6">
+            <div className="aspect-video bg-[var(--chip-bg)] rounded-lg flex items-center justify-center">
               <div className="text-center">
-                <Play className="h-12 w-12 mx-auto mb-2 text-gray-500" />
-                <p className="text-gray-500">Vídeo demonstrativo em breve</p>
+                <Play className="h-12 w-12 mx-auto mb-2 text-[var(--muted)]" />
+                <p className="text-[var(--muted)]">Vídeo demonstrativo em breve</p>
               </div>
             </div>
           </div>
@@ -136,59 +133,60 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
         {/* Informações do projeto */}
         <div className="space-y-6">
-          <div className="rounded-lg border border-gray-200">
-            <div className="border-b border-gray-200 p-4">
+          {/* Passo 4 → painéis como card-surface */}
+          <div className="card-surface">
+            <div className="border-b border-[var(--card-border)] p-4">
               <h3 className="text-lg font-semibold">Introdução</h3>
             </div>
             <div className="p-4">
-              <p className="text-gray-700 leading-relaxed">{project.fullDescription}</p>
+              <p className="text-[var(--muted)] leading-relaxed">{project.fullDescription}</p>
             </div>
           </div>
 
-          <div className="rounded-lg border border-gray-200">
-            <div className="border-b border-gray-200 p-4">
+          <div className="card-surface">
+            <div className="border-b border-[var(--card-border)] p-4">
               <h3 className="text-lg font-semibold">Principais Funcionalidades</h3>
             </div>
             <div className="p-4">
               <ul className="space-y-3">
                 {project.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-blue-600 rounded-full mt-2" />
-                    <span className="text-gray-700">{feature}</span>
+                    <span className="w-2 h-2 bg-[var(--primary)] rounded-full mt-2" />
+                    <span className="text-[var(--muted)]">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div className="rounded-lg border border-gray-200">
-            <div className="border-b border-gray-200 p-4">
+          <div className="card-surface">
+            <div className="border-b border-[var(--card-border)] p-4">
               <h3 className="text-lg font-semibold">Tecnologias & Arquitetura</h3>
             </div>
             <div className="p-4">
               <ul className="space-y-3">
                 {project.architecture.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-gray-400 rounded-full mt-2" />
-                    <span className="text-gray-700">{item}</span>
+                    <span className="w-2 h-2 bg-[var(--chip-border)] rounded-full mt-2" />
+                    <span className="text-[var(--muted)]">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div className="rounded-lg border border-gray-200">
-            <div className="border-b border-gray-200 p-4">
+          <div className="card-surface">
+            <div className="border-b border-[var(--card-border)] p-4">
               <h3 className="text-lg font-semibold">Próximos Passos</h3>
             </div>
             <div className="p-4">
               <ol className="space-y-3">
                 {project.nextSteps.map((step, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium">
+                    <span className="bg-[var(--primary)] text-[var(--primary-foreground)] w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium">
                       {i + 1}
                     </span>
-                    <span className="text-gray-700">{step}</span>
+                    <span className="text-[var(--muted)]">{step}</span>
                   </li>
                 ))}
               </ol>

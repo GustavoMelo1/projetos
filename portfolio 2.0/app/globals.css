@@ -307,7 +307,9 @@ img {
   min-height: 420px;               /* uniformiza a altura dos cards */
 }
 
-.project-card:hover { transform: scale(0.93); } /* micro interação */
+.project-card:hover {
+  transform: scale(0.93);          /* micro interação */
+}
 
 .project-badge-destaque {
   position: absolute;
@@ -628,26 +630,27 @@ img {
 /* =========================================================
   THEME OVERRIDE — Grey Dracula + Blue
   (escureci tudo e puxei azul nos CTAs/etiquetas)
-======================================================== */
+========================================================= */
 :root {
-  --bg: #0f1115;         /* fundo geral escuro */
-  --text: #e6e8ef;       /* texto principal claro */
-  --muted: #9aa3b2;      /* texto secundário */
-  --line: #1f2430;       /* bordas/linhas discretas */
+  --bg: #10131a;          /* fundo geral (um hair + claro p/ contraste) */
+  --text: #e8ebf2;        /* texto principal */
+  --muted: #9aa3b2;       /* texto secundário */
+  --line: #1f2430;        /* linhas/bordas discretas */
 
-  --chip-bg: #1a1f2b;    /* pílulas e hovers escuros */
+  --chip-bg: #1a1f2b;     /* pílulas/hover escuro */
   --chip-border: #242a38;
   --card-border: #242a38;
 
-  --primary: #1a73e8;    /* azul dos botões/etiquetas */
+  /* AZUL PRINCIPAL (novo) */
+  --primary: #0078D4;     /* Outlook/Microsoft blue */
   --primary-foreground: #ffffff;
 
-  /* pluga no sistema do @theme */
+  /* integra com o @theme */
   --background: var(--bg);
   --foreground: var(--text);
-  --card: #121621;
+  --card: #121826;        /* card um tico mais claro que o fundo */
   --card-foreground: var(--text);
-  --popover: #121621;
+  --popover: #121826;
   --popover-foreground: var(--text);
   --secondary: #151a24;
   --secondary-foreground: var(--text);
@@ -655,8 +658,9 @@ img {
   --accent: #151a24;
   --accent-foreground: var(--text);
   --border: var(--line);
-  --input: #1b2130;
+  --input: #1b2230;
   --ring: #2b3a55;
+
   --sidebar: var(--bg);
   --sidebar-foreground: var(--text);
   --sidebar-primary: var(--primary);
@@ -688,7 +692,10 @@ body { background: var(--bg); color: var(--text); }
 .project-description { color: var(--muted) !important; }
 .project-tag, .skill-badge { background: var(--primary) !important; color: var(--primary-foreground) !important; }
 .btn-demo { background: var(--primary) !important; color: var(--primary-foreground) !important; }
-.btn-demo:hover { background: #1557b0 !important; }
+.btn-demo:hover {
+  background: #0063AD; /* hover do novo azul */
+  transform: translateY(-1px);
+}
 .btn-code { background: var(--chip-bg) !important; color: var(--muted) !important; border: 1px solid var(--card-border) !important; }
 .btn-code:hover { background: #181e2a !important; }
 .btn-github { background: #0e1117 !important; }
@@ -722,9 +729,320 @@ body { background: var(--bg); color: var(--text); }
 .info-item strong { color: #eef2ff !important; }
 .availability-tag { background: var(--primary) !important; color: var(--primary-foreground) !important; }
 .download-cv { background: var(--primary) !important; color: var(--primary-foreground) !important; }
-.download-cv:hover { background: #1557b0 !important; }
+
+/* Botão "Baixar CV" */
+.download-cv:hover {
+  background: #0063AD; /* hover do novo azul */
+  transform: translateY(-1px);
+}
 
 /* responsivo no dark: só um ajuste pro sticky no mobile */
 @media (max-width: 768px){
   .contact-sidebar { position: static !important; }
 }
+
+/* =========================================================
+  DEMO PAGE — sincroniza tema com a home (escopo .project-page)
+  -> Coloca class="project-page" no wrapper da página de demo
+========================================================= */
+.project-page{
+  /* herda as mesmas cores do theme atual */
+  --bg: var(--background);
+  --text: var(--foreground);
+  --muted: var(--muted-foreground);
+  --line: var(--border);
+  --card: var(--card);
+  --card-border: var(--card-border, #242a38);
+  --chip-bg: var(--sidebar-accent, #151a24);
+  --chip-border: var(--sidebar-border, #242a38);
+  --primary: var(--sidebar-primary, #0078D4);
+  --primary-foreground: var(--sidebar-primary-foreground, #ffffff);
+
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* barras/headers internos que estavam claros */
+.project-page .top-bar,
+.project-page .header,
+.project-page header,
+.project-page .meta-strip,
+.project-page .breadcrumbs{
+  background: var(--bg) !important;
+  border-bottom: 1px solid var(--line) !important;
+  color: var(--text) !important;
+}
+
+/* painéis/boxes da coluna direita e seções com borda */
+.project-page .panel,
+.project-page .card,
+.project-page .feature-box,
+.project-page .section-box,
+.project-page .content-box,
+.project-page .info-box,
+.project-page .details-box{
+  background: var(--card) !important;
+  border: 1px solid var(--card-border) !important;
+  color: var(--text) !important;
+  border-radius: 12px;
+}
+
+/* listas/textos secundários dentro dos painéis */
+.project-page .panel li,
+.project-page .feature-box li,
+.project-page .content-box li,
+.project-page .info-box li{
+  color: var(--muted) !important;
+}
+.project-page .panel h3,
+.project-page .feature-box h3,
+.project-page .content-box h3,
+.project-page .info-box h3{
+  color: #eef2ff !important;
+}
+
+/* chips/badges */
+.project-page .chip,
+.project-page .tag,
+.project-page .badge{
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: 0 !important;
+}
+
+/* botões */
+.project-page .btn,
+.project-page .btn-primary{
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: 0 !important;
+}
+.project-page .btn:hover,
+.project-page .btn-primary:hover{
+  background: #0063AD !important;
+}
+
+.project-page .btn-outline,
+.project-page .btn-secondary,
+.project-page .btn-ghost{
+  background: var(--chip-bg) !important;
+  color: var(--muted) !important;
+  border: 1px solid var(--card-border) !important;
+}
+.project-page .btn-outline:hover,
+.project-page .btn-secondary:hover,
+.project-page .btn-ghost:hover{
+  background: #181e2a !important;
+}
+
+/* vitrines de imagem/vídeo */
+.project-page .screenshot,
+.project-page .media,
+.project-page .video,
+.project-page .gallery{
+  background: #0f1218 !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+/* divisórias */
+.project-page hr,
+.project-page .divider{
+  border-color: var(--line) !important;
+}
+
+/* =========================================================
+   THEME SHIM — Página de Detalhe do Projeto
+   (aplica as Cores do Tema mesmo se o componente tiver cores fixas)
+   Requer: classe "project-detail" no wrapper da página
+========================================================= */
+
+/* fundo + texto da página de detalhe */
+.project-detail {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* barra de navegação / header que possa ficar claro */
+.project-detail header,
+.project-detail nav {
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+  border-color: var(--line, var(--border)) !important;
+}
+
+/* painéis/cards da coluna direita + boxes em geral */
+.project-detail .panel,
+.project-detail .card,
+.project-detail .box,
+.project-detail [data-panel],
+.project-detail [data-card],
+.project-detail .section {
+  background: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--card-border, var(--border)) !important;
+  border-radius: 12px;
+}
+
+/* header dos painéis */
+.project-detail .panel-header,
+.project-detail .card-header,
+.project-detail [data-header] {
+  background: var(--popover) !important;
+  color: var(--foreground) !important;
+  border-bottom: 1px solid var(--card-border, var(--border)) !important;
+}
+
+/* textos secundários dentro dos cards */
+.project-detail .subtitle,
+.project-detail .description,
+.project-detail .panel p,
+.project-detail .card p,
+.project-detail .panel ul li,
+.project-detail .card ul li {
+  color: var(--muted-foreground) !important;
+}
+
+/* mídia/print da demo (a moldura do vídeo/imagem) */
+.project-detail .media,
+.project-detail .screenshot,
+.project-detail [data-media] {
+  background: #0f1218 !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: 12px;
+}
+
+/* chips/pills (tecnologias, etc.) */
+.project-detail .chip,
+.project-detail .pill,
+.project-detail [data-chip] {
+  background: var(--chip-bg) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--chip-border) !important;
+  border-radius: 999px;
+}
+
+/* botões primários */
+.project-detail .btn-primary,
+.project-detail [data-variant="primary"] {
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border: 1px solid color-mix(in oklab, var(--primary) 70%, black 30%) !important;
+}
+.project-detail .btn-primary:hover,
+.project-detail [data-variant="primary"]:hover {
+  background: #0063AD !important; /* seu hover azul */
+}
+
+/* botões secundários/cinzas */
+.project-detail .btn-muted,
+.project-detail [data-variant="muted"] {
+  background: var(--chip-bg) !important;
+  color: var(--muted-foreground) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+/* títulos */
+.project-detail h1,
+.project-detail h2,
+.project-detail h3 {
+  color: var(--foreground) !important;
+}
+
+/* ---------------------------------------------------------
+  Cobertura específica de CLASSES Tailwind comuns no detalhe
+  (quando o componente veio com bg/border/texto hardcoded)
+--------------------------------------------------------- */
+
+/* fundos claros -> vira card */
+.project-detail :is(.bg-white, .bg-gray-50, .bg-slate-50, .bg-neutral-50) {
+  background-color: var(--card) !important;
+}
+
+/* bordas claras -> vira card-border */
+.project-detail :is(.border, .border-gray-200, .border-slate-200, .border-neutral-200) {
+  border-color: var(--card-border) !important;
+}
+
+/* textos cinza -> vira muted-foreground */
+.project-detail :is(.text-gray-600, .text-gray-700, .text-slate-600, .text-slate-700) {
+  color: var(--muted-foreground) !important;
+}
+
+/* títulos que vieram como quase pretos */
+.project-detail :is(.text-black, .text-gray-900, .text-slate-900) {
+  color: var(--foreground) !important;
+}
+
+/* botões azuis hardcoded -> usa seu primary */
+.project-detail :is(.bg-blue-500, .bg-blue-600, .bg-indigo-500, .bg-indigo-600) {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+.project-detail :is(.hover\:bg-blue-600:hover, .hover\:bg-indigo-600:hover) {
+  background-color: #0063AD !important;
+}
+
+/* badges “cinza-claro” */
+.project-detail :is(.bg-gray-100, .bg-slate-100, .bg-neutral-100) {
+  background-color: var(--chip-bg) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--chip-border) !important;
+}
+
+/* linhas de divisão “hr/linhas” */
+.project-detail :is(.divide-gray-200, .divide-slate-200) > * + * {
+  border-color: var(--card-border) !important;
+}
+
+/* qualquer nav/top-strip clarinha que veio do layout */
+.project-detail :is(.bg-gray-100, .bg-slate-100) {
+  background-color: var(--background) !important;
+}
+
+/* =======================
+  AJUSTES DO PROJECT DETAIL
+======================= */
+
+/* Botão "Voltar aos Projetos" */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--text);
+  transition: background .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+/* Chips (Power Automate, APIs, Webhooks...) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--chip-bg);
+  color: var(--text);
+  border: 1px solid var(--chip-border);
+  transition: border-color .18s ease, background .18s ease;
+}
+.badge:hover {
+  border-color: var(--primary);
+}
+
+/* Caixa base dos painéis (Introdução, Funcionalidades...) */
+.card-surface {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+}
+
