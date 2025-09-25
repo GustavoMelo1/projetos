@@ -55,7 +55,7 @@ export default function HomePage() {
 
           {/* figure/figcaption seriam opcionais; aqui só a imagem com alt descritivo */}
           <div className="foto">
-            <img src="/Gustavo.jpeg" alt="Foto do Gustavo" />
+            <img src="Gustavo.jpeg" alt="Minha foto">
           </div>
         </section>
 
