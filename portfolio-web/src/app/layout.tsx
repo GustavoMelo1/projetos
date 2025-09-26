@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Gustavo - Desenvolvedor Full Stack",
   description:
     "Portfólio de Gustavo - Estudante de Engenharia de Software focado em Back-end/Full-stack, automação e integrações.",
-  generator: "v0.app",
+  generator: "Gustavo Portfolio",
 }
 
 export default function RootLayout({
