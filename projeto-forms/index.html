@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+<title>Dashboard Contratação</title>
+</head>
+<body>
+
+<header class="cabecalho">
+    <h1 class="titulo">Dashboard de contratações</h1>
+        <img id="logosonntag" src="imagens/logo-sonntag.webp" alt="Logo Sonntag">
+</header>
+
+<section class="cards">
+    <article class="card">
+        <div class="grande" id="total">0</div>
+        <div class="total">Total no período</div>
+    </article>
+
+    <article class="card">
+        <div class="grande" id="total-mes">0</div>
+        <div class="total">Este mês</div>
+    </article>
+
+    <article class="card destaque">
+        <div class="grande" id="total-cargo">—</div>
+        <div class="total">Cargo mais contratado</div>
+    </article>
+</section>
+
+<section class="filtros">
+        <select><option>Ano</option></select>
+        <select><option>Cargo</option></select>
+        <select><option>Tipo</option></select>
+        <select><option>Escolaridade</option></select>
+        <select><option>Estado civil</option></select>
+    <div class="botoes">
+        <button class="botao-csv">Exportar CSV</button>
+        <button class="botao-pdf">Gerar PDF</button>
+    </div>
+</section>
+
+<section class="barra-filtro">
+    <input type="text" placeholder="Filtros" />
+</section>
+
+<section class="tabela-wrap">
+    <table class="tabela" id="tabela">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th>OAB</th>
+                <th>Redes</th>
+                <th>Banco/Agência/Conta</th>
+                <th>Consentimento</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
