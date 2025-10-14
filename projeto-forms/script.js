@@ -1,5 +1,5 @@
 // ====== ORIGEM DO CSV ======
-const CSV_URL = "/sites/arquivodigital/Documentos%20Compartilhados/DADOS/%7B024.%20AUTOMA%C3%87%C3%83O%5D/Contratacoes-Dashboard/Dashboard/projeto-forms/dados.csv"; 
+const CSV_URL = "/sites/arquivodigital/Documentos%20Compartilhados/DADOS/%7B024.%20AUTOMA%C3%87%C3%83O%7D/Contratacoes-Dashboard/Dashboard/projeto-forms/dados.csv?download=1"; 
 
 
 // ====== Seletores (batendo com seu HTML) ======
