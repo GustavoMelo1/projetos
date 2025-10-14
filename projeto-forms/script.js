@@ -1,6 +1,6 @@
-// ====== ORIGEM DO CSV (cole aqui o link completo do SharePoint) ======
-const CSV_URL = "COLE_AQUI_URL_COMPLETA_DO_dados.csv"; 
-// pode deixar com ?web=1 no fim; funciona. Se preferir, remova tudo após "dados.csv".
+// ====== ORIGEM DO CSV ======
+const CSV_URL = "https://sonntagadv.sharepoint.com/:x:/r/sites/arquivodigital/_layouts/15/Doc.aspx?sourcedoc=%7B58E2EF25-72E4-4074-92C4-A3A8C49550A3%7D&file=dados.csv&action=default&mobileredirect=true"; 
+
 
 // ====== Seletores (batendo com seu HTML) ======
 const elTotal      = document.getElementById('total');
