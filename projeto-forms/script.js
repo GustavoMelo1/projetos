@@ -1,3 +1,7 @@
+// ====== ORIGEM DO CSV (cole aqui o link completo do SharePoint) ======
+const CSV_URL = "COLE_AQUI_URL_COMPLETA_DO_dados.csv"; 
+// pode deixar com ?web=1 no fim; funciona. Se preferir, remova tudo após "dados.csv".
+
 // ====== Seletores (batendo com seu HTML) ======
 const elTotal      = document.getElementById('total');
 const elMes        = document.getElementById('total-mes');
@@ -17,24 +21,26 @@ init();
 
 async function init() {
     try {
-        RAW = await loadCSV('dados.csv'); // precisa estar na MESMA pasta do index.html
+        // usa a URL absoluta do SharePoint; adiciono cache-busting pra evitar versão antiga
+        const url = CSV_URL.includes('?') ? `${CSV_URL}&_=${Date.now()}` : `${CSV_URL}?_=${Date.now()}`;
+        RAW = await loadCSV(url);
         VIEW = [...RAW];
         popularFiltros(RAW);
         render();
         bind();
-} catch (e) {
-    console.error(e);
-    // mostra algo na tela (opcional)
-}
+    } catch (e) {
+        console.error(e);
+        // feedback simples na tela se algo falhar
+        if (elTabelaBody) elTabelaBody.innerHTML = `<tr><td colspan="8">Erro ao carregar dados. Verifique o link do CSV e permissões.</td></tr>`;
+    }
 }
 
 // ====== Eventos ======
 function bind() {
-
     [selAno, selCargo, selTipo, selEscolaridade, selEstadoCivil].forEach(s => s.addEventListener('change', aplicarFiltros));
-    elBusca.addEventListener('input', aplicarFiltros);
-    btnCSV.addEventListener('click', exportarCSV);
-        btnPDF.addEventListener('click', () => window.print());
+    if (elBusca) elBusca.addEventListener('input', aplicarFiltros);
+    if (btnCSV) btnCSV.addEventListener('click', exportarCSV);
+    if (btnPDF) btnPDF.addEventListener('click', () => window.print());
 }
 
 function aplicarFiltros() {
@@ -43,7 +49,7 @@ function aplicarFiltros() {
     const tipo  = selTipo.value || 'Todos';
     const esc   = selEscolaridade.value || 'Todos';
     const est   = selEstadoCivil.value || 'Todos';
-    const q     = (elBusca.value || '').toLowerCase();
+    const q     = (elBusca?.value || '').toLowerCase();
 
     VIEW = RAW.filter(r =>
         (ano === 'Todos'   || String(r.Ano) === String(ano)) &&
@@ -52,10 +58,10 @@ function aplicarFiltros() {
         (esc === 'Todos'   || r.Escolaridade === esc) &&
         (est === 'Todos'   || r.EstadoCivil === est) &&
         (
-    q === '' ||
-        `${r.Nome} ${r.CPF} ${r.RG} ${r.OAB} ${r.Redes} ${r.Banco} ${r.Agencia} ${r.Conta} ${r.Cargo} ${r.Tipo}`
-        .toLowerCase()
-        .includes(q)
+        q === '' ||
+        ` ${r.Nome} ${r.CPF} ${r.RG} ${r.OAB} ${r.Redes} ${r.Banco} ${r.Agencia} ${r.Conta} ${r.Cargo} ${r.Tipo}`
+            .toLowerCase()
+            .includes(q)
     )
     );
 
@@ -88,8 +94,8 @@ function renderKPIs(rows) {
 
 function renderTabela(rows) {
     const html = rows.map(r => `
-    <tr>
-        <td>${esc(r.Nome)}</td>
+        <tr>
+            <td>${esc(r.Nome)}</td>
         <td>${esc(r.CPF)}</td>
         <td>${esc(r.RG)}</td>
         <td>${esc(r.OAB)}</td>
@@ -97,8 +103,8 @@ function renderTabela(rows) {
         <td>${esc(r.Banco)}/${esc(r.Agencia)}/${esc(r.Conta)}</td>
         <td><span class="badge ${badgeConsent(r.Consentimento)}">${esc(r.Consentimento)}</span></td>
         <td><span class="badge ${badgeTipo(r.Tipo)}">${esc(r.Tipo)}</span></td>
-    </tr>
-    `).join('');
+        </tr>
+    ` ).join('');
     elTabelaBody.innerHTML = html || `<tr><td colspan="8">Nenhum registro encontrado.</td></tr>`;
 }
 
@@ -114,7 +120,7 @@ function badgeConsent(v) {
 
 // ====== CSV ======
 async function loadCSV(path) {
-    const res = await fetch(path, { cache: 'no-store' });
+    const res = await fetch(path, { cache: 'no-store', credentials: 'same-origin' });
     if (!res.ok) throw new Error('Não foi possível carregar ' + path);
     const text = await res.text();
     return parseCSV(text);
@@ -128,7 +134,7 @@ function parseCSV(text) {
     return lines.map(line => {
         const cols = splitCSVLine(line);
         const get = (name) => cols[idx(name)] ?? '';
-        const row = {
+        return {
         Nome: get('Nome'),
         CPF: get('CPF'),
         RG: get('RG'),
@@ -146,7 +152,6 @@ function parseCSV(text) {
         EstadoCivil: get('EstadoCivil'),
         DataCadastro: get('DataCadastro')
     };
-    return row;
     });
 }
 
@@ -172,9 +177,9 @@ function splitCSVLine(line) {
 
 // ====== Filtros ======
 function popularFiltros(rows) {
-    preencherSelect(selAno,        uniq(rows.map(r => r.Ano).filter(Boolean)));
-    preencherSelect(selCargo,      uniq(rows.map(r => r.Cargo).filter(Boolean)).sort());
-    preencherSelect(selTipo,       uniq(rows.map(r => r.Tipo).filter(Boolean)).sort());
+    preencherSelect(selAno,          uniq(rows.map(r => r.Ano).filter(Boolean)));
+    preencherSelect(selCargo,        uniq(rows.map(r => r.Cargo).filter(Boolean)).sort());
+    preencherSelect(selTipo,         uniq(rows.map(r => r.Tipo).filter(Boolean)).sort());
     preencherSelect(selEscolaridade, uniq(rows.map(r => r.Escolaridade).filter(Boolean)).sort());
     preencherSelect(selEstadoCivil,  uniq(rows.map(r => r.EstadoCivil).filter(Boolean)).sort());
 }
